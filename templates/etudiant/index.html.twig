@@ -1,0 +1,16 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}liste des etudiants{% endblock %}
+
+{% block body %}
+<div class="container row">
+    {% for personne in personnes %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{etudiant.prenom }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ etudiant.nom }} {{ etudiant.prenom }}</h6>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
