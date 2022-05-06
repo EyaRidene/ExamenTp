@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EtudiantController extends AbstractController
 {
-    #[Route('/etudiant', name: 'petudiant.list')]
+    #[Route('/etudiant', name: 'etudiant.list')]
     public function index(ManagerRegistry $doctrine){
         $repository = $doctrine->getRepository(Etudiant::class);
         $etudiants = $repository->findAll();
@@ -34,6 +34,26 @@ class EtudiantController extends AbstractController
         $entityManager->flush();
 
 
+        return $this->redirectToRoute('etudiant.list');
+    }
+
+    #[Route('/etudiant/update/{id}/{prenom}/{nom}', name: 'etudiant.update')]
+    public function updateEtudiant (Etudiant $etudiant=null , ManagerRegistry $doctrine,$prenom,$nom): Response
+    {
+
+        if ($etudiant) {
+            $manager = $doctrine->getManager();
+            $etudiant->setPrenom($prenom);
+            $etudiant->setNom($nom);
+
+            $manager->persist($etudiant);
+            $manager->flush();
+            $this->addFlash('succes',"personne modifié avec succès!");
+        }
+
+        else{
+            $this->addFlash('error',"personne inexistante!");
+        }
         return $this->redirectToRoute('etudiant.list');
     }
 }
