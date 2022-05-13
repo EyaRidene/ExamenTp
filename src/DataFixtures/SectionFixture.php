@@ -17,9 +17,10 @@ class SectionFixture extends Fixture
             "CH",
             "BIO",
             "MPI",
-            "CBA"
+            "CBA",
+
         ];
-        for ($i=1;$i<count($data);$i++){
+        for ($i=0;$i<count($data);$i++){
             $section=new \App\Entity\Section();
             $section->setDesignation($data[$i]);
 

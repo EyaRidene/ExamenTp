@@ -1,0 +1,25 @@
+{% extends 'template.html.twig' %}
+
+{% block title %} liste des etudiants {% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+
+        <div class="container">
+            <table class="table">
+                <tr class="table-active">
+                    <td>Id</td>
+                    <td>Section</td>
+
+                </tr>
+                {% for section in sections %}
+                    <tr class="table-{% if loop.index is odd %}danger{% else %}warning{% endif %}">
+                        <td>{{ section.id }}</td>
+                        <td>{{ section.designation }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

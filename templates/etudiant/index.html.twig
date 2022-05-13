@@ -1,16 +1,32 @@
 {% extends 'template.html.twig' %}
 
-{% block title %}liste des etudiants{% endblock %}
+{% block title %} liste des etudiants {% endblock %}
 
 {% block body %}
-<div class="container row">
-    {% for etudiant in etudiant %}
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{etudiant.prenom }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ etudiant.nom }} {{ etudiant.prenom }}</h6>
-            </div>
+    <div class="container mt-3">
+        <h1>Liste des étudiants ✅</h1> <br>
+       <h5> <a href="{{ path('etudiant.form') }}" class="link">Ajouter un étudiant</a> </h5> <br>
+
+        <div class="container">
+            <table class="table">
+                <tr class="table-active">
+                    <td>Id</td>
+                    <td>Prénom</td>
+                    <td>Nom</td>
+                    <td>Section</td>
+                    <td>Action</td>
+                </tr>
+                {% for etudiant in etudiants %}
+                    <tr class="table-{% if loop.index is odd %}danger{% else %}warning{% endif %}">
+                        <td>{{ etudiant.id }}</td>
+                        <td>{{ etudiant.prenom }}</td>
+                        <td>{{ etudiant.nom }}</td>
+                        <td></td>
+                        <td><a href="{{ path('etudiant.form',{id : etudiant.id } ) }}" class="link">editer</a>  <a href="{{ path('etudiant.delete',{id : etudiant.id } ) }}" class="link">delete</a> </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-    {% endfor %}
-</div>
+    </div>
+
 {% endblock %}

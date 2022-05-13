@@ -18,6 +18,14 @@ class Section
     #[ORM\Column(type: 'string', length: 255)]
     private $designation;
 
+    #[ORM\OneToMany(mappedBy: 'section', targetEntity: Etudiant::class)]
+    private $etudiants;
+
+    public function __construct()
+    {
+        $this->etudiants = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -33,6 +41,36 @@ class Section
     public function setDesignation(string $designation): self
     {
         $this->designation = $designation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Etudiant>
+     */
+    public function getEtudiants(): Collection
+    {
+        return $this->etudiants;
+    }
+
+    public function addEtudiant(Etudiant $etudiant): self
+    {
+        if (!$this->etudiants->contains($etudiant)) {
+            $this->etudiants[] = $etudiant;
+            $etudiant->setSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtudiant(Etudiant $etudiant): self
+    {
+        if ($this->etudiants->removeElement($etudiant)) {
+            // set the owning side to null (unless already changed)
+            if ($etudiant->getSection() === $this) {
+                $etudiant->setSection(null);
+            }
+        }
 
         return $this;
     }
