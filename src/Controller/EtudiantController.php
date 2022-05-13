@@ -42,9 +42,9 @@ class EtudiantController extends AbstractController
 
                 $manager->flush();
                 if ($new){
-                    $this->addFlash('succes',"la personne a été ajoutée");
+                    $this->addFlash('succes',"Etudiant ajouté avec succès !");
                 }else{
-                    $this->addFlash('succes',"la personne a été mise à jour");
+                    $this->addFlash('succes',"Etudiant mis à jour avec succès !");
                 }
 
                 return $this->redirectToRoute('etudiant.list');
@@ -64,11 +64,11 @@ class EtudiantController extends AbstractController
             $manager = $doctrine->getManager();
             $manager->remove($etudiant);
             $manager->flush();
-            $this->addFlash('succes',"étudiant supprimé avec succès!");
+            $this->addFlash('succes',"Etudiant supprimé avec succès !");
         }
 
         else{
-            $this->addFlash('error',"étudiant inexistant!");
+            $this->addFlash('error',"Etudiant inexistant!");
         }
         return $this->redirectToRoute('etudiant.list');
     }
