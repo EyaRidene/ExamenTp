@@ -3,9 +3,9 @@
 {% block title %} liste des etudiants {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset("assets/styles.css") }}">
-{% endblock %}
 
+    <link rel="stylesheet" href="{{ asset("assets/css/styles.css") }}">
+{% endblock %}
 
 
 {% block body %}
@@ -14,13 +14,13 @@
         <h5><a href="{{ path('etudiant.form') }}" class="link">Ajouter un étudiant</a></h5> <br>
         <table class="table">
             <tr class="table-active">
-                <td>Nom</td>
-                <td >Prénom</td>
-                <td>Section</td>
-                <td>Action</td>
+                <th>Nom</th>
+                <th >Prénom</th>
+                <th>Section</th>
+                <th>Action</th>
             </tr>
             {% for etudiant in etudiants %}
-                <tr class="  table-{% if loop.index is odd %}danger{% else %}warning{% endif %} ">
+                <tr class="  table-{% if loop.index is odd %}info {% else %}warning{% endif %} ">
                     <td>{{ etudiant.nom }}</td>
                     <td>{{ etudiant.prenom }}</td>
                     <td>{% if etudiant.section == null %}
@@ -40,5 +40,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset("assets/script.js") }}" ></script>
+    <script src="{{ asset("assets/js/script.js") }}" ></script>
 {% endblock %}
+
+
