@@ -1,5 +1,7 @@
-document.querySelectorAll("td").forEach((el) =>
-    el.addEventListener("click", () => {
-        el.classList.toggle("highlight");
+const tds=document.querySelectorAll("td")
+
+    tds.forEach((td) =>
+    td.addEventListener("click", () => {
+        td.classList.toggle("highlight");
     })
 );
