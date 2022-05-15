@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Etudiant;
-use App\Entity\Personne;
+
 use App\Form\EtudiantType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

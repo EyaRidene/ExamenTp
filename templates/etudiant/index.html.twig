@@ -2,6 +2,12 @@
 
 {% block title %} liste des etudiants {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset("assets/styles.css") }}">
+{% endblock %}
+
+
+
 {% block body %}
     <div class="container mt-3">
         <h1>Liste des étudiants ✅</h1> <br>
@@ -9,12 +15,12 @@
         <table class="table">
             <tr class="table-active">
                 <td>Nom</td>
-                <td>Prénom</td>
+                <td >Prénom</td>
                 <td>Section</td>
                 <td>Action</td>
             </tr>
             {% for etudiant in etudiants %}
-                <tr class="table-{% if loop.index is odd %}danger{% else %}warning{% endif %}">
+                <tr class="  table-{% if loop.index is odd %}danger{% else %}warning{% endif %} ">
                     <td>{{ etudiant.nom }}</td>
                     <td>{{ etudiant.prenom }}</td>
                     <td>{% if etudiant.section == null %}
@@ -23,7 +29,7 @@
                             {{ etudiant.section.designation }}
                         {% endif %}
                     </td>
-                    <td><a href="{{ path('etudiant.form',{id : etudiant.id } ) }}" class="link">editer</a> <a
+                    <td class="ligne"><a href="{{ path('etudiant.form',{id : etudiant.id } ) }}" class="link">editer</a> <a
                                 href="{{ path('etudiant.delete',{id : etudiant.id } ) }}" class="link">delete</a></td>
                 </tr>
             {% endfor %}
@@ -31,4 +37,8 @@
 
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("assets/script.js") }}" ></script>
 {% endblock %}
